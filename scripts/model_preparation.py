@@ -7,14 +7,14 @@ Typical usage example:
 
 
 import numpy as np
-from keras.regularizers import l2
+from tensorflow.keras.regularizers import l2
 from tensorflow.keras.layers import Lambda, Flatten, Dense
 from tensorflow.keras.layers import MaxPooling2D
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Conv2D, Input
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import Sequential
-from keras import backend as K
+from tensorflow.keras import backend as K
 
 
 def initialize_weights(shape, dtype=None):

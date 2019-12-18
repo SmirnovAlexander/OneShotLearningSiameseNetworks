@@ -134,7 +134,7 @@ def make_oneshot_task(N, x, categories, language=None):
     return pairs, targets
 
 
-def test_oneshot_task(model, N, k, x, categories, verbose=1):
+def test_oneshot_task(model, N, k, x, categories, verbose=1, language=None):
     """Test average N way oneshot learning accuracy of a siamese neural net over k one-shot tasks.
 
     Args:
@@ -157,7 +157,7 @@ def test_oneshot_task(model, N, k, x, categories, verbose=1):
         print("Evaluating model on {} random {} way one-shot learning tasks ... \n".format(k, N))
 
     for i in range(k):
-        inputs, targets = make_oneshot_task(N, x, categories)
+        inputs, targets = make_oneshot_task(N, x, categories, language)
         predictions = model.predict(inputs)
         if np.argmax(predictions) == np.argmax(targets):
             n_correct += 1

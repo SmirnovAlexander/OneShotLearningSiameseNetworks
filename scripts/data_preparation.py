@@ -14,6 +14,7 @@ import os
 import pickle
 import numpy as np
 from imageio import imread
+from PIL import Image
 
 
 def load_images(path, n=0):
@@ -83,3 +84,19 @@ def load_data(filename, path="../data/arrays", verbose=1):
         print("\n")
 
     return x_train, train_classes
+
+
+def load_test_data(filename, path="../data/arrays", verbose=1):
+
+    x_test, categories_test = load_data("test")
+    x_test_new = x_test[:, :, :, :, 0]
+
+    for char in range(x_test.shape[0]):
+        for letter in range(x_test.shape[1]):
+            new_image = Image.new("RGBA", (105, 105), "WHITE")
+            new_image.paste(Image.fromarray(x_test[char, letter, :, :, :]), (0, 0), Image.fromarray(
+                x_test[char, letter, :, :, :]))
+            arrim = np.array(new_image)
+            x_test_new[char, letter] = np.array(arrim[:, :, 0])
+
+    return x_test_new, categories_test

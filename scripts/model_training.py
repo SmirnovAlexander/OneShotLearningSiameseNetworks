@@ -22,8 +22,6 @@ import numpy as np
 import numpy.random as rng
 from sklearn.utils import shuffle
 
-from data_preparation import load_data
-
 import wandb
 
 
@@ -174,6 +172,10 @@ def test_oneshot_task(model, N, k, x, categories, verbose=1):
 
 
 def train(model,
+          x,
+          categories,
+          x_val,
+          categories_val,
           model_path="../models/",
           train_name="train",
           val_name="val",
@@ -192,10 +194,6 @@ def train(model,
 
     wandb.init(project="one_shot_learning",
                dir="../models")
-
-    # Loading data.
-    x, categories = load_data(train_name)
-    x_val, categories_val = load_data(val_name)
 
     best_val_acc = -1
 

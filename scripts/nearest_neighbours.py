@@ -37,7 +37,7 @@ def nearest_neighbour_correct(pairs, targets):
     return 0
 
 
-def test_nn_accuracy(N, k, x, categories):
+def test_nn_accuracy(N, k, x, categories, language=None):
     """Returns accuracy of NN approach.
 
     Args:
@@ -55,7 +55,7 @@ def test_nn_accuracy(N, k, x, categories):
     n_right = 0
 
     for i in range(k):
-        pairs, targets = make_oneshot_task(N, x, categories)
+        pairs, targets = make_oneshot_task(N, x, categories, language)
         correct = nearest_neighbour_correct(pairs, targets)
         n_right += correct
 
